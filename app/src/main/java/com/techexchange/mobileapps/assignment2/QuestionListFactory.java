@@ -16,6 +16,7 @@ import java.util.Random;
 
 public class QuestionListFactory {
     private static final String TAG = QuestionListFactory.class.getSimpleName();
+    private static final Integer ENTRIES = 247;
 
     public static StringBuilder readInputStream(InputStream in) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(in));
@@ -48,10 +49,12 @@ public class QuestionListFactory {
 
         ArrayList<Question> questionList = new ArrayList<>();
         Random rand = new Random();
+        int index = 1;
         for (String key: capitalToCountry.keySet()) {
             questionList.add(new Question(key + " is the capital of which country?", capitalToCountry.get(key),
-                    country.get(rand.nextInt(247) + 0), country.get(rand.nextInt(247) + 0),
-                    country.get(rand.nextInt(247) + 0)));
+                    country.get(rand.nextInt(ENTRIES) + 0), country.get(rand.nextInt(247) + 0),
+                    country.get(rand.nextInt(ENTRIES) + 0), index));
+            index++;
         }
         return questionList;
     }
